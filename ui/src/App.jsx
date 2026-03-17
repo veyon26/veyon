@@ -1,26 +1,33 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Sidebar from "./Components/Sidebar/Sidebar";
+import Billing from "./Components/Pages/Billing";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [collapsed, setCollapsed] = useState(false);
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
+    <BrowserRouter>
+      <div className="d-flex">
+        <Sidebar collapsed={collapsed} setCollapsed={setCollapsed} />
+        <div
+          style={{
+            marginLeft: collapsed ? "72px" : "250px",
+            padding: "24px",
+            width: "100%",
+            transition: "margin-left 0.3s ease",
+            minHeight: "100vh",
+            background: "#f4f6fb",
+          }}
+        >
+          <Routes>
+            <Route path="/" element={<Billing />} />
+          </Routes>
         </div>
-        <div>
-          <h1>Veyon Tech</h1>     
-        </div>   
-      </section>
-    </>
-  )
+      </div>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
