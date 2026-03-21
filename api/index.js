@@ -8,7 +8,7 @@ app.use(cors());
 app.use(express.json());
 
 // routes
-const billingRoutes = require("./router/billing");
+const billingRoutes = require("./router/Billing");
 
 app.use("/api", billingRoutes);
 
